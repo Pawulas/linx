@@ -1,30 +1,36 @@
 require.config({
   paths: {
     vue: '../lib/vue/vue',
-    vueRouter: '../lib/vue/vue-router'
+    vuex: '../lib/vue/vuex'
   }
 });
 
-
 define([
   'vue',
-  'router/router'
-], function(Vue, router) {
+  'vuex',
+  'store/store',
+  'components/home'
+], function(Vue, Vuex, store) {
   'use strict';
 
   var template = [];
 
-  template.push("<div>")
-  template.push("<p>TEST</p>")
-  template.push("<router-link to='/home'>Home</router-link>");
-  template.push("<router-link to='/about'>About</router-link>");
-  template.push("<router-view></router-view>");
+  template.push("<div id='wrapper'>")
+  template.push("<component :is='activeComponent'></component>");
   template.push("</div>")
 
   var v = new Vue({
     el: '#app',
     template: template.join(""),
-    router: router
+    store: store,
+    computed: {
+      test: function() {
+        return this.$store.state.test;
+      },
+      activeComponent: function() {
+        return this.$store.state.activeComponent;
+      }
+    }
   });
   
 });

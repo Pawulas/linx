@@ -8,11 +8,11 @@ define([
   template.push("<p>{{msg}}</p>");
   template.push("</div>");
 
-  return Vue.component('about', {
+  return Vue.component('history', {
     template: template.join(""),
     data: function() {
       return {
-        msg: "componnent/about"
+        msg: "componnent/history"
       }
     }
   });
